@@ -5,8 +5,8 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 public class TMainActivity extends AppCompatActivity {
-    DrawerLayout mDrawerLayout = null;
+    private DrawerLayout mDrawerLayout = null;
     private ListView mDrawerList = null;
-    FrameLayout mContentFrame = null;
+    private FrameLayout mContentFrame = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,8 @@ public class TMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initDrawer();
+
+        mDrawerList.performItemClick(null, 0, 0);
     }
 
     private void initDrawer() {

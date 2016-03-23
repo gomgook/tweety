@@ -10,7 +10,7 @@
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_paddingTop="?android:attr/actionBarSize"/>
+        android:paddingTop="?attr:actionBarSize"/>
 
     <!-- The navigation drawer -->
     <ListView android:id="@+id/drawer_list"
