@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 /**
- * Created by 160229i-a on 16. 3. 21..
+ * Created by Gomguk on 16. 3. 21..
  */
 public class TDrawerListAdapter extends BaseAdapter {
     private Activity mActivity = null;
@@ -38,7 +38,7 @@ public class TDrawerListAdapter extends BaseAdapter {
 
             // Profile View Cell Setting.
             if (position == 0) {
-                convertView = layoutInflater.inflate(R.layout.drawer_profile_cell, parent, false);
+                convertView = layoutInflater.inflate(R.layout.cell_drawer_profile, parent, false);
             }
         }
 

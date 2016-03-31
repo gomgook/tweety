@@ -16,8 +16,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TSplashActivity">
+        <activity android:name=".TProfileActivity">
         </activity>
+
     </application>
 
 </manifest>
