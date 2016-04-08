@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class TMainActivity extends AppCompatActivity {
-
     private ListView mDrawerList = null;
 
     @Override
@@ -33,6 +32,7 @@ public class TMainActivity extends AppCompatActivity {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                     if (position == 0) {    // Profile Cell.
                         Intent intent = new Intent(TMainActivity.this, TProfileActivity.class);
                         startActivity(intent);
