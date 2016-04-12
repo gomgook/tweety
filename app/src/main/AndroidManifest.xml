@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".TAuthorizeActivity">
+        </activity>
+
         <activity android:name=".TProfileActivity">
         </activity>
 

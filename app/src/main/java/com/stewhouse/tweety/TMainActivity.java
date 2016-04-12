@@ -21,7 +21,13 @@ public class TMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initDrawer();
+        TApplication application = (TApplication) getApplication();
+
+        if (application.isAuthorized() == true) {
+            initDrawer();
+        } else {
+            TApplication.setAuthorization(this);
+        }
     }
 
     private void initDrawer() {
