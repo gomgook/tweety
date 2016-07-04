@@ -12,7 +12,6 @@ import io.fabric.sdk.android.Fabric;
  * Created by Gomguk on 16. 4. 8..
  */
 public class TApplication extends Application {
-
     private boolean isAuthorized = false;
 
     @Override

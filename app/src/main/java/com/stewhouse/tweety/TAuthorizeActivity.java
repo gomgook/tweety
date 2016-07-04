@@ -2,9 +2,8 @@ package com.stewhouse.tweety;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ViewStub;
 import android.widget.Toast;
 
 import com.twitter.sdk.android.core.Callback;
@@ -16,19 +15,19 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 /**
  * Created by Gomguk on 16. 4. 12..
  */
-public class TAuthorizeActivity extends AppCompatActivity {
+public class TAuthorizeActivity extends TAppCompatActivity {
 
     // TODO: test code.
-    private TwitterLoginButton loginButton;
+    private TwitterLoginButton loginButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_authorize);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Use TAppCompatActivity's content_viewstub to show TAppCompatActivity's content.
+        ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
+        viewStub.setLayoutResource(R.layout.activity_authorize);
+        viewStub.inflate();
 
         // TODO: test code.
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
@@ -62,5 +61,12 @@ public class TAuthorizeActivity extends AppCompatActivity {
         // Make sure that the loginButton hears the result from any
         // Activity that it triggered.
         loginButton.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        // Send application to background when the back key is pressed.
+        moveTaskToBack(true);
     }
 }

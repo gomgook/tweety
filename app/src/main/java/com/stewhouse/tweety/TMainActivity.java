@@ -2,27 +2,24 @@ package com.stewhouse.tweety;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class TMainActivity extends AppCompatActivity {
+public class TMainActivity extends TAppCompatActivity {
     private ListView mDrawerList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-
-        // Setting ToolBar in the DrawerLayout.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Use TAppCompatActivity's content_viewstub to show TAppCompatActivity's content.
+        ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
+        viewStub.setLayoutResource(R.layout.activity_main);
+        viewStub.inflate();
 
         TApplication application = (TApplication) getApplication();
-
         if (application.isAuthorized() == true) {
             initDrawer();
         } else {

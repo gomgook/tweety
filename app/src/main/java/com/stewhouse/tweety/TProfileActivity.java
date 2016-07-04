@@ -1,23 +1,23 @@
 package com.stewhouse.tweety;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.ViewStub;
 
 /**
  * Created by Gomguk on 16. 3. 30..
  */
-public class TProfileActivity extends AppCompatActivity {
+public class TProfileActivity extends TAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_profile);
+        // Use TAppCompatActivity's content_viewstub to show TAppCompatActivity's content.
+        ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
+        viewStub.setLayoutResource(R.layout.activity_profile);
+        viewStub.inflate();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
