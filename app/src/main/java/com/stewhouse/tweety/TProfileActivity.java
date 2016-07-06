@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewStub;
 
+import com.stewhouse.tweety.utility.TAppCompatActivity;
+
 /**
  * Created by Gomguk on 16. 3. 30..
  */

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.ViewStub;
 import android.widget.Toast;
 
+import com.stewhouse.tweety.utility.TAppCompatActivity;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -28,6 +29,8 @@ public class TAuthorizeActivity extends TAppCompatActivity {
         ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
         viewStub.setLayoutResource(R.layout.activity_authorize);
         viewStub.inflate();
+
+        authorizeTwitter();
 
         // TODO: test code.
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
@@ -68,5 +71,12 @@ public class TAuthorizeActivity extends TAppCompatActivity {
 
         // Send application to background when the back key is pressed.
         moveTaskToBack(true);
+    }
+
+    private void authorizeTwitter() {
+//        TwitterSession session = Twitter.getSessionManager().getActiveSession();
+//        TwitterAuthToken authToken = session.getAuthToken();
+//        String token = authToken.token;
+//        String secret = authToken.secret;
     }
 }
