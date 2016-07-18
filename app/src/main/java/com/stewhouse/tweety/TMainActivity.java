@@ -20,13 +20,6 @@ public class TMainActivity extends TAppCompatActivity {
         ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
         viewStub.setLayoutResource(R.layout.activity_main);
         viewStub.inflate();
-
-        TApplication application = (TApplication) getApplication();
-        if (application.isAuthorized() == true) {
-            initDrawer();
-        } else {
-            TApplication.setAuthorization(this);
-        }
     }
 
     private void initDrawer() {

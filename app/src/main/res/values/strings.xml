@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tweety</string>
+
+    <string name="twitter_login_error">Twitter authorization failed. Please try again.</string>
 </resources>

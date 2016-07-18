@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.stewhouse.tweety.R;
+import com.stewhouse.tweety.TApplication;
 
 /**
  * Created by Gomguk on 16. 7. 4..
@@ -20,5 +21,14 @@ public class TAppCompatActivity extends AppCompatActivity {
         // Setting ToolBar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!TApplication.isAuthorized()) {
+            TApplication.splashAuthorization(this);
+        }
     }
 }

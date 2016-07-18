@@ -1,12 +1,13 @@
 package com.stewhouse.tweety;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ViewStub;
 import android.widget.Toast;
 
-import com.stewhouse.tweety.utility.TAppCompatActivity;
+import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -16,7 +17,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 /**
  * Created by Gomguk on 16. 4. 12..
  */
-public class TAuthorizeActivity extends TAppCompatActivity {
+public class TAuthorizeActivity extends AppCompatActivity {
 
     // TODO: test code.
     private TwitterLoginButton loginButton = null;
@@ -25,12 +26,7 @@ public class TAuthorizeActivity extends TAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Use TAppCompatActivity's content_viewstub to show TAppCompatActivity's content.
-        ViewStub viewStub = (ViewStub) findViewById(R.id.content_viewstub);
-        viewStub.setLayoutResource(R.layout.activity_authorize);
-        viewStub.inflate();
-
-        authorizeTwitter();
+        setContentView(R.layout.activity_authorize);
 
         // TODO: test code.
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
@@ -41,17 +37,15 @@ public class TAuthorizeActivity extends TAppCompatActivity {
 
                 // The TwitterSession is also available through:
                 // Twitter.getInstance().core.getSessionManager().getActiveSession()
-                TwitterSession session = result.data;
-
-                // TODO: Remove toast and use the TwitterSession's userID
                 // with your app's user model
-                String msg = "@" + session.getUserName() + " logged in! (#" + session.getUserId() + ")";
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                authorizeTwitter();
+                finish();
             }
 
             @Override
             public void failure(TwitterException exception) {
-                Log.d("TwitterKit", "Login with Twitter failure", exception);
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.twitter_login_error), Toast.LENGTH_LONG).show();
+                Log.e("TwitterKit", "Login with Twitter failure", exception);
             }
         });
     }
@@ -60,7 +54,6 @@ public class TAuthorizeActivity extends TAppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // TODO: test code.
         // Make sure that the loginButton hears the result from any
         // Activity that it triggered.
         loginButton.onActivityResult(requestCode, resultCode, data);
@@ -74,9 +67,17 @@ public class TAuthorizeActivity extends TAppCompatActivity {
     }
 
     private void authorizeTwitter() {
-//        TwitterSession session = Twitter.getSessionManager().getActiveSession();
-//        TwitterAuthToken authToken = session.getAuthToken();
-//        String token = authToken.token;
-//        String secret = authToken.secret;
+        TwitterSession session = Twitter.getSessionManager().getActiveSession();
+        TSQLiteOpenHelper SQLiteOpenHelper = TSQLiteOpenHelper.getInstance(TAuthorizeActivity.this);
+        SQLiteDatabase db = SQLiteOpenHelper.getWritableDatabase();
+
+        if (session.getUserId() > -1) {
+            SQLiteOpenHelper.insertUserID(db, String.valueOf(session.getUserId()));
+        }
+
+        TApplication application = (TApplication) getApplication();
+        if (application != null) {
+            application.setIsAuthorized(true);
+        }
     }
 }

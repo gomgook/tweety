@@ -12,7 +12,8 @@ import io.fabric.sdk.android.Fabric;
  * Created by Gomguk on 16. 4. 8..
  */
 public class TApplication extends Application {
-    private boolean isAuthorized = false;
+
+    private static boolean mIsAuthorized = false;
 
     @Override
     public void onCreate() {
@@ -22,12 +23,17 @@ public class TApplication extends Application {
         Fabric.with(this, new Twitter(authConfig));
     }
 
-    public boolean isAuthorized() {
-        return isAuthorized;
+    public static boolean isAuthorized() {
+        return mIsAuthorized;
     }
 
-    public static void setAuthorization(Activity activity) {
+    public static void setIsAuthorized(boolean isAuthorized) {
+        mIsAuthorized = isAuthorized;
+    }
+
+    public static void splashAuthorization(Activity activity) {
         Intent intent = new Intent(activity, TAuthorizeActivity.class);
+
         activity.startActivity(intent);
     }
 }
