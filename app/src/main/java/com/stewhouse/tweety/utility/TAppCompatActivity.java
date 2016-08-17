@@ -27,8 +27,6 @@ public class TAppCompatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (!TApplication.isAuthorized()) {
-            TApplication.splashAuthorization(this);
-        }
+        TApplication.checkTwitterAuthorization(this);
     }
 }

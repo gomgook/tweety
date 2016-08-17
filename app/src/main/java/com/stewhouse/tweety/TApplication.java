@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterSession;
+
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -19,16 +21,20 @@ public class TApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Initialize Fabric Twitter SDK.
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TConstants.TWITTER_KEY, TConstants.TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
     }
 
-    public static boolean isAuthorized() {
-        return mIsAuthorized;
-    }
+    public static void checkTwitterAuthorization(Activity activity) {
+        TwitterSession session = Twitter.getSessionManager().getActiveSession();
 
-    public static void setIsAuthorized(boolean isAuthorized) {
-        mIsAuthorized = isAuthorized;
+        if (session == null) {
+            mIsAuthorized = false;
+            TApplication.splashAuthorization(activity);
+        } else {
+            mIsAuthorized = true;
+        }
     }
 
     public static void splashAuthorization(Activity activity) {

@@ -17,7 +17,6 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
  */
 public class TAuthorizeActivity extends AppCompatActivity {
 
-    // TODO: test code.
     private TwitterLoginButton loginButton = null;
 
     @Override
@@ -26,8 +25,9 @@ public class TAuthorizeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_authorize);
 
-        // TODO: test code.
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
+
+        // TODO: test code.
         loginButton.setCallback(new Callback<TwitterSession>() {
 
             @Override
@@ -35,8 +35,7 @@ public class TAuthorizeActivity extends AppCompatActivity {
 
                 // The TwitterSession is also available through:
                 // Twitter.getInstance().core.getSessionManager().getActiveSession()
-                // with your app's user model
-                authorizeTwitter();
+                // with your app's user model.
                 finish();
             }
 
@@ -62,12 +61,5 @@ public class TAuthorizeActivity extends AppCompatActivity {
 
         // Send application to background when the back key is pressed.
         moveTaskToBack(true);
-    }
-
-    private void authorizeTwitter() {
-        TApplication application = (TApplication) getApplication();
-        if (application != null) {
-            application.setIsAuthorized(true);
-        }
     }
 }
