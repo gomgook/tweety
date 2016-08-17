@@ -1,13 +1,11 @@
 package com.stewhouse.tweety;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -67,14 +65,6 @@ public class TAuthorizeActivity extends AppCompatActivity {
     }
 
     private void authorizeTwitter() {
-        TwitterSession session = Twitter.getSessionManager().getActiveSession();
-        TSQLiteOpenHelper SQLiteOpenHelper = TSQLiteOpenHelper.getInstance(TAuthorizeActivity.this);
-        SQLiteDatabase db = SQLiteOpenHelper.getWritableDatabase();
-
-        if (session.getUserId() > -1) {
-            SQLiteOpenHelper.insertUserID(db, String.valueOf(session.getUserId()));
-        }
-
         TApplication application = (TApplication) getApplication();
         if (application != null) {
             application.setIsAuthorized(true);
