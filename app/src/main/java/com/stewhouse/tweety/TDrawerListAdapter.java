@@ -38,7 +38,9 @@ public class TDrawerListAdapter extends BaseAdapter {
 
             // Profile View Cell Setting.
             if (position == 0) {
-                convertView = layoutInflater.inflate(R.layout.cell_drawer_profile, parent, false);
+                convertView = layoutInflater.inflate(R.layout.cell_drawer_profile,
+                        parent,
+                        false);
             }
         }
 

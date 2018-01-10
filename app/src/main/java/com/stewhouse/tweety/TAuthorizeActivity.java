@@ -41,7 +41,9 @@ public class TAuthorizeActivity extends AppCompatActivity {
 
             @Override
             public void failure(TwitterException exception) {
-                Toast.makeText(getApplicationContext(), getResources().getString(R.string.twitter_login_error), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.twitter_login_error),
+                        Toast.LENGTH_LONG).show();
                 Log.e("TwitterKit", "Login with Twitter failure", exception);
             }
         });
