@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.stewhouse.tweety.util.BaseAppCompatActivity;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
@@ -27,7 +28,6 @@ public class TAuthorizeActivity extends AppCompatActivity {
 
         loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login_button);
 
-        // TODO: test code.
         loginButton.setCallback(new Callback<TwitterSession>() {
 
             @Override

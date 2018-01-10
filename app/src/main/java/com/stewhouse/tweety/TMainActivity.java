@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class TMainActivity extends AppCompatActivity {
+import com.stewhouse.tweety.util.BaseAppCompatActivity;
+
+public class TMainActivity extends BaseAppCompatActivity {
 
     private DrawerLayout mDrawerLayout = null;
     private ListView mDrawerList = null;
@@ -25,8 +27,7 @@ public class TMainActivity extends AppCompatActivity {
         // Setting ToolBar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */

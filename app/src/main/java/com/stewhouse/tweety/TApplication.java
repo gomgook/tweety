@@ -15,7 +15,7 @@ import io.fabric.sdk.android.Fabric;
  */
 public class TApplication extends Application {
 
-    private static boolean mIsAuthorized = false;
+//    private static boolean mIsAuthorized = false;
 
     @Override
     public void onCreate() {
@@ -26,16 +26,16 @@ public class TApplication extends Application {
         Fabric.with(this, new Twitter(authConfig));
     }
 
-    public static void checkTwitterAuthorization(Activity activity) {
-        TwitterSession session = Twitter.getSessionManager().getActiveSession();
-
-        if (session == null) {
-            mIsAuthorized = false;
-            TApplication.splashAuthorization(activity);
-        } else {
-            mIsAuthorized = true;
-        }
-    }
+//    public static void checkTwitterAuthorization(Activity activity) {
+//        TwitterSession session = Twitter.getSessionManager().getActiveSession();
+//
+//        if (session == null) {
+//            mIsAuthorized = false;
+//            TApplication.splashAuthorization(activity);
+//        } else {
+//            mIsAuthorized = true;
+//        }
+//    }
 
     public static void splashAuthorization(Activity activity) {
         Intent intent = new Intent(activity, TAuthorizeActivity.class);
